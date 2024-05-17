@@ -16,6 +16,12 @@ h1 {
     font-size: 2.5em;
     margin-bottom: 20px;
     text-align: center;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+.fade-in {
+    opacity: 0;
 }
 
 p {
@@ -75,4 +81,15 @@ p {
     width: 100%;
     max-width: 300px;
     box-sizing: border-box;
+}
+
+#buffering {
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
 }
