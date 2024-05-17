@@ -27,9 +27,17 @@
     <h1 id="game-heading">Rock-Paper-Scissors</h1>
     <p>Choose your move:</p>
     <div class="buttons">
-        <button class="button rock" onclick="playGame('rock')"><i class="fas fa-hand-rock"></i></button>
-        <button class="button paper" onclick="playGame('paper')"><i class="fas fa-hand-paper"></i></button>
-        <button class="button scissors" onclick="playGame('scissors')"><i class="fas fa-hand-scissors"></i></button>
+        <button class="button rock" onclick="playGame('rock')" aria-label="Rock">
+            <i class="fas fa-hand-rock"></i>
+        </button>
+
+        <button class="button paper" onclick="playGame('paper')" aria-label="Paper">
+            <i class="fas fa-hand-paper"></i>
+        </button>
+
+        <button class="button scissors" onclick="playGame('scissors')" aria-label="Scissors">
+            <i class="fas fa-hand-scissors"></i>
+        </button>
     </div>
 
     <div id="result"></div>
