@@ -44,3 +44,46 @@ function changeHeading() {
 
 // Change the heading after 10 seconds
 setTimeout(changeHeading, 10000);
+
+// Register service worker
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+                console.log('Service Worker registered:', registration);
+            })
+            .catch(error => {
+                console.error('Service Worker registration failed:', error);
+            });
+    });
+}
+
+// Function to cache app assets
+const cacheAssets = async () => {
+    const cache = await caches.open('rps-assets');
+    return cache.addAll([
+        '/',
+        '/index.html',
+        '/styles.css',
+        '/script.js',
+        '/icons/apple-touch-icon.png',
+        '/icons/favicon-16x16.png',
+        '/icons/favicon-32x32.png',
+        '/icons/android-chrome-192x192.png',
+        '/icons/android-chrome-512x512.png',
+    ]);
+};
+
+// Cache app assets on install
+self.addEventListener('install', event => {
+    event.waitUntil(cacheAssets());
+});
+
+// Fetch cached assets
+self.addEventListener('fetch', event => {
+    event.respondWith(
+        caches.match(event.request).then(response => {
+            return response || fetch(event.request);
+        })
+    );
+});
